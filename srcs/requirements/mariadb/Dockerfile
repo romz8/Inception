@@ -1,20 +1,21 @@
-FROM	debian:bullseye
+FROM	debian:11.9
 
-RUN		apt update && apt upgrade -y
+RUN		apt-get update && apt-get upgrade -y
 
-RUN 	apt install mariadb-server -y
+RUN 	apt-get install mariadb-server -y
 
-COPY 	conf/50-server.cnf etc/mysql/mariadb.conf.d/50-server.cnf
+COPY 	conf/my.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY	tools/mariadb_conf_script.sh /tmp/container_maria_setup.sh
+COPY	tools/init_mariadb.sh /tmp/init_mariadb.sh
 
-RUN 	chmod 755  /tmp/container_maria_setup.sh
+RUN 	chmod +x  /tmp/init_mariadb.sh 
 
 RUN		mkdir -p /var/run/mysqld
 
 RUN		chown -R mysql:mysql /var/run/mysqld \
 		&& chmod 777 /var/run/mysqld
+RUN		chown -R mysql:mysql /tmp  /run/mysqld
 
 EXPOSE	3306
 
-ENTRYPOINT	[ "bash", "/tmp/container_maria_setup.sh" ]
+ENTRYPOINT	[ "sh", "/tmp/init_mariadb.sh" ]
