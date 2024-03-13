@@ -8,5 +8,7 @@ RUN		mkdir -p /var/run/nginx
 COPY	conf/nginx.conf /etc/nginx/nginx.conf
 RUN		chmod 755 /var/www/html
 
+EXPOSE	443
+
 CMD		["nginx","-g","daemon off;"]
 
