@@ -21,4 +21,4 @@ fi
 
 mysqladmin -u ${DB_ROOT} -p${DB_ROOT_PWD} shutdown
 
-exec mysqld_safe
+mysqld

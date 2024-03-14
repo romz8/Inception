@@ -6,9 +6,9 @@ RUN 	apt-get install mariadb-server -y
 
 COPY 	conf/my.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY	tools/init_mariadb.sh /tmp/init_mariadb.sh
+COPY	tools/init_mariadb.sh /usr/local/bin/init_mariadb.sh
 
-RUN 	chmod +x  /tmp/init_mariadb.sh 
+RUN 	chmod +x  /usr/local/bin/init_mariadb.sh
 
 RUN		mkdir -p /var/run/mysqld
 
@@ -18,4 +18,4 @@ RUN		chown -R mysql:mysql /tmp  /run/mysqld
 
 EXPOSE	3306
 
-ENTRYPOINT	[ "sh", "/tmp/init_mariadb.sh" ]
+ENTRYPOINT	[ "sh", "/usr/local/bin/init_mariadb.sh" ]
