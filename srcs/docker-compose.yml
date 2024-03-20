@@ -52,13 +52,13 @@ services:
 volumes:
   mariadb_data:
     name: mariadb_data
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   device: "/home/rjobert/data/mariadb"
+    driver: local
+    driver_opts:
+      type: none
+      device: "/home/rjobert/data/mariadb"
   wordpress_data:
     name: wordpress_data
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   device: "/home/rjobert/data/wordpress"
+    driver: local
+    driver_opts:
+      type: none
+      device: "/home/rjobert/data/wordpress"
