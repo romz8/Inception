@@ -16,7 +16,7 @@ services:
     - .env
     volumes:
     - mariadb_data:/var/lib/mysql
-    restart: "no"
+    restart: always
     expose:
     - "3306"
 
@@ -31,7 +31,7 @@ services:
     - .env
     volumes:
     - wordpress_data:/var/www/html
-    restart: "no"
+    restart: always
     expose: 
     - "9000"
   
@@ -44,7 +44,7 @@ services:
     build: ./requirements/nginx
     volumes:
     - wordpress_data:/var/www/html
-    restart: "no"
+    restart: always
     ports: 
     - "443:443"
 
@@ -56,9 +56,11 @@ volumes:
     driver_opts:
       type: none
       device: "/home/rjobert/data/mariadb"
+      o: bind
   wordpress_data:
     name: wordpress_data
     driver: local
     driver_opts:
       type: none
       device: "/home/rjobert/data/wordpress"
+      o: bind
