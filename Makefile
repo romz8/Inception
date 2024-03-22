@@ -22,7 +22,6 @@ wipeout:
 	-docker system prune --all --force
 	-docker volume prune --all --force
 	-docker volume rm $$(docker volume ls -q)
-	-docker network rm inceptionnet
 
 re: clean all	
 

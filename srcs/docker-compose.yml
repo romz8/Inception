@@ -9,6 +9,7 @@ networks:
 services:
   mariadb:
     container_name: mariadb
+    image: mariadb
     networks:
     - inception
     build: ./requirements/mariadb
@@ -22,6 +23,7 @@ services:
 
   wordpress:
     container_name: wordpress
+    image: wordpress
     depends_on:
       - mariadb
     networks:
@@ -37,6 +39,7 @@ services:
   
   nginx:
     container_name: nginx
+    image: nginx
     depends_on:
       - wordpress
     networks:
